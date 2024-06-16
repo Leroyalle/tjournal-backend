@@ -7,10 +7,12 @@ import {
   Param,
   Delete,
   NotFoundException,
+  Query,
 } from '@nestjs/common';
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
+import { SearchPostDto } from './dto/search-post.dto';
 
 @Controller('posts')
 export class PostController {
@@ -24,6 +26,15 @@ export class PostController {
   @Get()
   findAll() {
     return this.postService.findAll();
+  }
+
+  @Get('/popular')
+  getPopular() {
+    return this.postService.getPopular();
+  }
+  @Get('/search')
+  searchPosts(@Query() dto: SearchPostDto) {
+    return this.postService.search(dto);
   }
 
   @Get(':id')
