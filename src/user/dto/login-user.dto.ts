@@ -1,9 +1,6 @@
-import { IsEmail, Length, max, min } from 'class-validator';
+import { IsEmail, Length } from 'class-validator';
 
-export class CreateUserDto {
-  @Length(3)
-  fullName: string;
-
+export class LoginUserDto {
   @IsEmail(undefined, { message: 'Неверная почта' })
   email: string;
 
